@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The History of Bangladesh - Interactive Journey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bangladesh-green: #006a4e;
+            --bangladesh-red: #f42a41;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #495057;
+            --text-color: #333;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+            line-height: 1.6;
+        }
+        
+        /* Header and Navigation */
+        header {
+            background-color: var(--bangladesh-green);
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo .material-icons {
+            margin-right: 0.5rem;
+            color: var(--bangladesh-red);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links a:hover {
+            color: var(--bangladesh-red);
+        }
+        
+        .nav-links a.active {
+            color: var(--bangladesh-red);
+        }
+        
+        .nav-links .material-icons {
+            font-size: 1.2rem;
+            margin-right: 0.3rem;
+        }
+        
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 106, 78, 0.8), rgba(0, 106, 78, 0.8)), 
+                        url('https://sfile.chatglm.cn/images-ppt/7f9517435e3e.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 5%;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            animation: fadeInUp 1s ease 0.2s;
+            animation-fill-mode: both;
+        }
+        
+        .hero .cta-button {
+            background-color: var(--bangladesh-red);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            animation: fadeInUp 1s ease 0.4s;
+            animation-fill-mode: both;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .hero .cta-button:hover {
+            background-color: #d02338;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .hero .cta-button .material-icons {
+            margin-left: 0.5rem;
+        }
+        
+        /* Timeline Section */
+        .timeline-section {
+            padding: 5rem 5%;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--bangladesh-green);
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--bangladesh-red);
+            border-radius: 2px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--bangladesh-green);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+        
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid var(--bangladesh-red);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid white;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+        }
+        
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid white;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+        
+        .right::after {
+            left: -16px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .timeline-date {
+            font-weight: 700;
+            color: var(--bangladesh-red);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--bangladesh-green);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-description {
+            margin-bottom: 15px;
+        }
+        
+        .timeline-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+        
+        .read-more {
+            color: var(--bangladesh-green);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+        
+        .read-more:hover {
+            color: var(--bangladesh-red);
+        }
+        
+        .read-more .material-icons {
+            font-size: 1rem;
+            margin-left: 0.3rem;
+        }
+        
+        /* History Sections */
+        .history-section {
+            padding: 5rem 5%;
+            background-color: var(--light-gray);
+        }
+        
+        .history-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .history-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .history-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .history-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .history-card-content {
+            padding: 1.5rem;
+        }
+        
+        .history-card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--bangladesh-green);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .history-card-title .material-icons {
+            margin-right: 0.5rem;
+            color: var(--bangladesh-red);
+        }
+        
+        .history-card-date {
+            color: var(--bangladesh-red);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .history-card-description {
+            margin-bottom: 1.5rem;
+        }
+        
+        .history-card-link {
+            color: var(--bangladesh-green);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+        
+        .history-card-link:hover {
+            color: var(--bangladesh-red);
+        }
+        
+        .history-card-link .material-icons {
+            font-size: 1rem;
+            margin-left: 0.3rem;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            animation: slideIn 0.3s;
+        }
+        
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--dark-gray);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close:hover {
+            color: var(--bangladesh-red);
+        }
+        
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--bangladesh-green);
+            margin-bottom: 1rem;
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Gallery Section */
+        .gallery-section {
+            padding: 5rem 5%;
+            background-color: white;
+        }
+        
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 106, 78, 0.8);
+            color: white;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--bangladesh-green);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-description {
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--bangladesh-red);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Responsive Design */
+        @media screen and (max-width: 992px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-container::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+            
+            .left::after, .right::after {
+                left: 15px;
+            }
+            
+            .right {
+                left: 0%;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background-color: var(--bangladesh-green);
+                padding: 1rem 0;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .timeline-title {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media screen and (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+            
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="material-icons">public</i>
+                History of Bangladesh
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active"><i class="material-icons">home</i>Home</a></li>
+                <li><a href="#timeline" class="nav-link"><i class="material-icons">timeline</i>Timeline</a></li>
+                <li><a href="#history" class="nav-link"><i class="material-icons">history</i>History</a></li>
+                <li><a href="#gallery" class="nav-link"><i class="material-icons">collections</i>Gallery</a></li>
+                <li><a href="#contact" class="nav-link"><i class="material-icons">contact_mail</i>Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="material-icons">menu</i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>The History of Bangladesh</h1>
+        <p>From Ancient Bengal to Modern Nationhood</p>
+        <a href="#timeline" class="cta-button">Explore History <i class="material-icons">arrow_downward</i></a>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="timeline-section">
+        <h2 class="section-title">Historical Timeline</h2>
+        <div class="timeline">
+            <!-- Ancient Bengal -->
+            <div class="timeline-container left">
+                <div class="timeline-content">
+                    <div class="timeline-date">Before 1200 AD</div>
+                    <h3 class="timeline-title">Ancient Bengal</h3>
+                    <p class="timeline-description">Bengal was part of ancient empires like Maurya Empire (321–185 BCE) and Gupta Empire (320–550 CE). Key cultural and trade center in South Asia.</p>
+                    <img src="https://sfile.chatglm.cn/images-ppt/da1a5dec3572.jpg" alt="Mahasthangarh archaeological site" class="timeline-image">
+                    <a href="#" class="read-more" onclick="openModal('ancient-bengal')">Read More <i class="material-icons">arrow_forward</i></a>
+                </div>
+            </div>
+            
+            <!-- Islamic Rule -->
+            <div class="timeline-container right">
+                <div class="timeline-content">
+                    <div class="timeline-date">1200–1757</div>
+                    <h3 class="timeline-title">Islamic Rule</h3>
+                    <p class="timeline-description">Turkic and Afghan rulers established Islamic rule in Bengal. Bengal became a wealthy province under the Mughals with cultural fusion of traditions.</p>
+                    <img src="https://sfile.chatglm.cn/images-ppt/5e7f04a283c1.jpg" alt="Lalbagh Fort in Dhaka" class="timeline-image">
+                    <a href="#" class="read-more" onclick="openModal('islamic-rule')">Read More <i class="material-icons">arrow_forward</i></a>
+                </div>
+            </div>
+            
+            <!-- British Colonial Rule -->
+            <div class="timeline-container left">
+                <div class="timeline-content">
+                    <div class="timeline-date">1757–1947</div>
+                    <h3 class="timeline-title">British Colonial Rule</h3>
+                    <p class="timeline-description">Battle of Plassey (1757) marked the beginning of British rule. Bengal became the first British colony in India, facing exploitation and famine.</p>
+                    <img src="https://sfile.chatglm.cn/images-ppt/7c27c6259a2c.jpg" alt="Battle of Plassey 1757" class="timeline-image">
+                    <a href="#" class="read-more" onclick="openModal('british-rule')">Read More <i class="material-icons">arrow_forward</i></a>
+                </div>
+            </div>
+            
+            <!-- Partition and East Pakistan -->
+            <div class="timeline-container right">
+                <div class="timeline-content">
+                    <div class="timeline-date">1947–1971</div>
+                    <h3 class="timeline-title">Partition and East Pakistan</h3>
+                    <p class="timeline-description">1947 partition divided Bengal. East Pakistan faced economic exploitation and language discrimination, leading to the Language Movement of 1952.</p>
+                    <img src="https://sfile.chatglm.cn/images-ppt/e368223425bb.jpg" alt="Shaheed Minar" class="timeline-image">
+                    <a href="#" class="read-more" onclick="openModal('east-pakistan')">Read More <i class="material-icons">arrow_forward</i></a>
+                </div>
+            </div>
+            
+            <!-- Liberation War -->
+            <div class="timeline-container left">
+                <div class="timeline-content">
+                    <div class="timeline-date">1971</div>
+                    <h3 class="timeline-title">Liberation War</h3>
+                    <p class="timeline-description">After 9 months of war following Operation Searchlight, Bangladesh achieved independence on December 16, 1971, with Indian intervention.</p>
+                    <img src="https://sfile.chatglm.cn/images-ppt/80ea916d504d.jpg" alt="Sheikh Mujibur Rahman" class="timeline-image">
+                    <a href="#" class="read-more" onclick="openModal('liberation-war')">Read More <i class="material-icons">arrow_forward</i></a>
+                </div>
+            </div>
+            
+            <!-- Modern Bangladesh -->
+            <div class="timeline-container right">
+                <div class="timeline-content">
+                    <div class="timeline-date">1972–Present</div>
+                    <h3 class="timeline-title">Modern Bangladesh</h3>
+                    <p class="timeline-description">From post-independence challenges to becoming one of the fastest growing economies, Bangladesh has made significant progress in development.</p>
+                    <img src="https://sfile.chatglm.cn/images-ppt/f92e0761f372.jpg" alt="Modern Dhaka skyline" class="timeline-image">
+                    <a href="#" class="read-more" onclick="openModal('modern-bangladesh')">Read More <i class="material-icons">arrow_forward</i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Sections -->
+    <section id="history" class="history-section">
+        <h2 class="section-title">Explore Historical Periods</h2>
+        <div class="history-container">
+            <!-- Ancient Bengal Card -->
+            <div class="history-card">
+                <img src="https://sfile.chatglm.cn/images-ppt/da1a5dec3572.jpg" alt="Ancient Bengal" class="history-card-image">
+                <div class="history-card-content">
+                    <h3 class="history-card-title"><i class="material-icons">account_balance</i>Ancient Bengal</h3>
+                    <div class="history-card-date">Before 1200 AD</div>
+                    <p class="history-card-description">Explore the ancient civilizations of Bengal, including the Maurya and Gupta Empires, and the archaeological site of Mahasthangarh.</p>
+                    <a href="#" class="history-card-link" onclick="openModal('ancient-bengal')">Learn More <i class="material-icons">arrow_forward</i></a>
+                </div>
+            </div>
+            
+            <!-- Islamic Rule Card -->
+            <div class="history-card">
+                <img src="https://sfile.chatglm.cn/images-ppt/5e7f04a283c1.jpg" alt="Islamic Rule" class="history-card-image">
+                <div class="history-card-content">
+                    <h3 class="history-card-title"><i class="material-icons">mosque</i>Islamic Rule</h3>
+                    <div class="history-card-date">1200–1757</div>
+                    <p class="history-card-description">Discover the Islamic period in Bengal, from the Delhi Sultanate to the Mughal Empire, and the cultural fusion that shaped the region.</p>
+                    <a href="#" class="history-card-link" onclick="openModal('islamic-rule')">Learn More <i class="material-icons">arrow_forward</i></a>
+                </div>
+            </div>
+            
+            <!-- British Colonial Rule Card -->
+            <div class="history-card">
+                <img src="https://sfile.chatglm.cn/images-ppt/7c27c6259a2c.jpg" alt="British Colonial Rule" class="history-card-image">
+                <div class="history-card-content">
+                    <h3 class="history-card-title"><i class="material-icons">public</i>British Colonial Rule</h3>
+                    <div class="history-card-date">1757–1947</div>
+                    <p class="history-card-description">Learn about the British colonial period, the Battle of Plassey, and the rise of nationalist movements in Bengal.</p>
+                    <a href="#" class="history-card-link" onclick="openModal('british-rule')">Learn More <i class="material-icons">arrow_forward</i></a>
+                </div>
+            </div>
+            
+            <!-- Partition and East Pakistan Card -->
+            <div class="history-card">
+                <img src="https://sfile.chatglm.cn/images-ppt/e368223425bb.jpg" alt="Partition and East Pakistan" class="history-card-image">
+                <div class="history-card-content">
+                    <h3 class="history-card-title"><i class="material-icons">flag</i>Partition and East Pakistan</h3>
+                    <div class="history-card-date">1947–1971</div>
+                    <p class="history-card-description">Understand the partition of India, the creation of East Pakistan, and the movements for autonomy that led to the Liberation War.</p>
+                    <a href="#" class="history-card-link" onclick="openModal('east-pakistan')">Learn More <i class="material-icons">arrow_forward</i></a>
+                </div>
+            </div>
+            
+            <!-- Liberation War Card -->
+            <div class="history-card">
+                <img src="https://sfile.chatglm.cn/images-ppt/80ea916d504d.jpg" alt="Liberation War" class="history-card-image">
+                <div class="history-card-content">
+                    <h3 class="history-card-title"><i class="material-icons">military_tech</i>Liberation War</h3>
+                    <div class="history-card-date">1971</div>
+                    <p class="history-card-description">Explore the events of 1971, from Sheikh Mujib's historic speech to the nine-month war that led to Bangladesh's independence.</p>
+                    <a href="#" class="history-card-link" onclick="openModal('liberation-war')">Learn More <i class="material-icons">arrow_forward</i></a>
+                </div>
+            </div>
+            
+            <!-- Modern Bangladesh Card -->
+            <div class="history-card">
+                <img src="https://sfile.chatglm.cn/images-ppt/f92e0761f372.jpg" alt="Modern Bangladesh" class="history-card-image">
+                <div class="history-card-content">
+                    <h3 class="history-card-title"><i class="material-icons">trending_up</i>Modern Bangladesh</h3>
+                    <div class="history-card-date">1972–Present</div>
+                    <p class="history-card-description">Discover Bangladesh's journey from post-independence challenges to becoming one of the fastest growing economies in the world.</p>
+                    <a href="#" class="history-card-link" onclick="openModal('modern-bangladesh')">Learn More <i class="material-icons">arrow_forward</i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <h2 class="section-title">Historical Gallery</h2>
+        <div class="gallery-container">
+            <div class="gallery-item" onclick="openGalleryImage('https://sfile.chatglm.cn/images-ppt/da1a5dec3572.jpg', 'Mahasthangarh archaeological site')">
+                <img src="https://sfile.chatglm.cn/images-ppt/da1a5dec3572.jpg" alt="Mahasthangarh" class="gallery-image">
+                <div class="gallery-caption">Mahasthangarh</div>
+            </div>
+            <div class="gallery-item" onclick="openGalleryImage('https://sfile.chatglm.cn/images-ppt/5e7f04a283c1.jpg', 'Lalbagh Fort in Dhaka')">
+                <img src="https://sfile.chatglm.cn/images-ppt/5e7f04a283c1.jpg" alt="Lalbagh Fort" class="gallery-image">
+                <div class="gallery-caption">Lalbagh Fort</div>
+            </div>
+            <div class="gallery-item" onclick="openGalleryImage('https://sfile.chatglm.cn/images-ppt/7c27c6259a2c.jpg', 'Battle of Plassey 1757')">
+                <img src="https://sfile.chatglm.cn/images-ppt/7c27c6259a2c.jpg" alt="Battle of Plassey" class="gallery-image">
+                <div class="gallery-caption">Battle of Plassey</div>
+            </div>
+            <div class="gallery-item" onclick="openGalleryImage('https://sfile.chatglm.cn/images-ppt/e368223425bb.jpg', 'Shaheed Minar commemorating Language Movement')">
+                <img src="https://sfile.chatglm.cn/images-ppt/e368223425bb.jpg" alt="Shaheed Minar" class="gallery-image">
+                <div class="gallery-caption">Shaheed Minar</div>
+            </div>
+            <div class="gallery-item" onclick="openGalleryImage('https://sfile.chatglm.cn/images-ppt/80ea916d504d.jpg', 'Sheikh Mujibur Rahman addressing a rally')">
+                <img src="https://sfile.chatglm.cn/images-ppt/80ea916d504d.jpg" alt="Sheikh Mujibur Rahman" class="gallery-image">
+                <div class="gallery-caption">Sheikh Mujibur Rahman</div>
+            </div>
+            <div class="gallery-item" onclick="openGalleryImage('https://sfile.chatglm.cn/images-ppt/f92e0761f372.jpg', 'Modern Dhaka skyline')">
+                <img src="https://sfile.chatglm.cn/images-ppt/f92e0761f372.jpg" alt="Modern Dhaka" class="gallery-image">
+                <div class="gallery-caption">Modern Dhaka</div>
+            </div>
+            <div class="gallery-item" onclick="openGalleryImage('https://sfile.chatglm.cn/images-ppt/2250f1c08b5a.jpg', 'Pahela Baishakh celebrations')">
+                <img src="https://sfile.chatglm.cn/images-ppt/2250f1c08b5a.jpg" alt="Pahela Baishakh" class="gallery-image">
+                <div class="gallery-caption">Pahela Baishakh</div>
+            </div>
+            <div class="gallery-item" onclick="openGalleryImage('https://sfile.chatglm.cn/images-ppt/757feca82b2c.jpeg', 'Bangladesh UN peacekeeping forces')">
+                <img src="https://sfile.chatglm.cn/images-ppt/757feca82b2c.jpeg" alt="UN Peacekeepers" class="gallery-image">
+                <div class="gallery-caption">UN Peacekeepers</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <h3 class="footer-title">The History of Bangladesh</h3>
+            <p class="footer-description">An interactive journey through the rich history of Bangladesh, from ancient civilizations to modern nationhood.</p>
+            <div class="social-links">
+                <a href="#"><i class="material-icons">facebook</i></a>
+                <a href="#"><i class="material-icons">language</i></a>
+                <a href="#"><i class="material-icons">email</i></a>
+            </div>
+            <p class="copyright">© 2025 The History of Bangladesh. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title" class="modal-title"></h2>
+            <img id="modal-image" src="" alt="" class="modal-image">
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation functionality
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const navItems = document.querySelectorAll('.nav-link');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                
+                // Update active nav link
+                navItems.forEach(link => link.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+        
+        // Update active nav link on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').slice(1) === current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+        
+        // Modal functionality
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalImage = document.getElementById('modal-image');
+        const modalBody = document.getElementById('modal-body');
+        const closeModal = document.querySelector('.close');
+        
+        // Modal content data
+        const modalContent = {
+            'ancient-bengal': {
+                title: 'Ancient Bengal (Before 1200 AD)',
+                image: 'https://sfile.chatglm.cn/images-ppt/da1a5dec3572.jpg',
+                content: `
+                    <p>Bengal was part of ancient empires like the Maurya Empire (321–185 BCE) and Gupta Empire (320–550 CE). It was a key cultural and trade center in South Asia.</p>
+                    <h3>Key Features:</h3>
+                    <ul>
+                        <li>Pundranagar (Mahasthangarh): One of the earliest urban sites dating back to 300 BCE</li>
+                        <li>Predominantly Hindu and Buddhist population</li>
+                        <li>Rich cultural heritage with advanced urban planning</li>
+                        <li>Important center for trade and commerce</li>
+                    </ul>
+                    <p>The archaeological site of Mahasthangarh is the oldest in Bangladesh, offering insights into the ancient civilization that flourished in this region.</p>
+                `
+            },
+            'islamic-rule': {
+                title: 'Islamic Rule (1200–1757)',
+                image: 'https://sfile.chatglm.cn/images-ppt/5e7f04a283c1.jpg',
+                content: `
+                    <p>Turkic and Afghan rulers established Islamic rule in Bengal. The region was first under the Delhi Sultanate and later became part of the Mughal Empire.</p>
+                    <h3>Key Developments:</h3>
+                    <ul>
+                        <li>Bengal became a wealthy province under the Mughals</li>
+                        <li>Cultural fusion of Islamic, Bengali, and Persian traditions</li>
+                        <li>Flourishing of art, architecture, and literature</li>
+                        <li>Development of trade networks across the region</li>
+                    </ul>
+                    <p>Lalbagh Fort in Dhaka, built by Mughal Subahdar Muhammad Azam Shah, is a prominent example of Mughal architecture in Bangladesh.</p>
+                `
+            },
+            'british-rule': {
+                title: 'British Colonial Rule (1757–1947)',
+                image: 'https://sfile.chatglm.cn/images-ppt/7c27c6259a2c.jpg',
+                content: `
+                    <p>The Battle of Plassey in 1757 marked the beginning of British rule in Bengal when the British East India Company defeated the Nawab of Bengal.</p>
+                    <h3>Key Events:</h3>
+                    <ul>
+                        <li>Bengal became the first British colony in India</li>
+                        <li>Exploitation led to economic decline and the devastating Famine of 1943</li>
+                        <li>Rise of nationalist movements in Bengal</li>
+                        <li>Leaders like Subhash Chandra Bose and movements like the Khilafat Movement emerged</li>
+                    </ul>
+                    <p>The British colonial period had profound and lasting impacts on Bengal's economy, society, and political landscape.</p>
+                `
+            },
+            'east-pakistan': {
+                title: 'Partition and East Pakistan (1947–1971)',
+                image: 'https://sfile.chatglm.cn/images-ppt/e368223425bb.jpg',
+                content: `
+                    <p>In 1947, British India was divided, leading to the partition of Bengal. West Bengal became part of India, while East Bengal became East Pakistan.</p>
+                    <h3>Key Challenges:</h3>
+                    <ul>
+                        <li>Economic exploitation by West Pakistan</li>
+                        <li>Language discrimination (Urdu vs. Bengali)</li>
+                        <li>Language Movement of 1952: Protest to make Bangla an official language</li>
+                        <li>February 21, 1952: Students killed during protests in Dhaka</li>
+                    </ul>
+                    <p>The Language Movement became a key moment in identity building, leading to Bangla being recognized as a state language. February 21 is now celebrated as International Mother Language Day.</p>
+                `
+            },
+            'liberation-war': {
+                title: 'Liberation War (1971)',
+                image: 'https://sfile.chatglm.cn/images-ppt/80ea916d504d.jpg',
+                content: `
+                    <p>In 1970 elections, Sheikh Mujibur Rahman's Awami League won a majority, but West Pakistan refused to transfer power.</p>
+                    <h3>Key Events:</h3>
+                    <ul>
+                        <li>March 7, 1971: Sheikh Mujib's historic speech at the Ramna Race Course</li>
+                        <li>March 25, 1971: Operation Searchlight began, leading to mass killings</li>
+                        <li>Nine-month war of independence</li>
+                        <li>December 16, 1971: Bangladesh achieved independence with Indian intervention</li>
+                    </ul>
+                    <p>The Liberation War was a defining moment in Bangladesh's history, marked by immense sacrifice and resilience in the face of atrocities.</p>
+                `
+            },
+            'modern-bangladesh': {
+                title: 'Modern Bangladesh (1972–Present)',
+                image: 'https://sfile.chatglm.cn/images-ppt/f92e0761f372.jpg',
+                content: `
+                    <p>Since independence, Bangladesh has faced numerous challenges but has also made significant progress in various sectors.</p>
+                    <h3>Key Developments:</h3>
+                    <ul>
+                        <li>Growth in economy (textiles, remittances), infrastructure, and education</li>
+                        <li>Bangladesh is one of the fastest growing economies in the world</li>
+                        <li>Political rivalry between Awami League and BNP</li>
+                        <li>Sheikh Hasina's leadership since 2009 brought stability and development</li>
+                        <li>Active role in climate change, peacekeeping, and international diplomacy</li>
+                    </ul>
+                    <p>Vision 2041 aims to transform Bangladesh into a developed country, focusing on digital transformation, green energy, and innovation.</p>
+                `
+            }
+        };
+        
+        function openModal(period) {
+            const content = modalContent[period];
+            modalTitle.textContent = content.title;
+            modalImage.src = content.image;
+            modalImage.alt = content.title;
+            modalBody.innerHTML = content.content;
+            modal.style.display = 'block';
+        }
+        
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Gallery functionality
+        function openGalleryImage(src, caption) {
+            modalTitle.textContent = caption;
+            modalImage.src = src;
+            modalImage.alt = caption;
+            modalBody.innerHTML = <p>${caption}</p>;
+            modal.style.display = 'block';
+        }
+        
+        // Smooth scrolling for CTA button
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#timeline').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
